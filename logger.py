@@ -1,6 +1,7 @@
 """
 ロギング
 """
+import datetime
 import logging.config
 
 
@@ -73,7 +74,7 @@ class Logger:
                     'level': log_level,
                     'formatter': 'logFormatter',
                     'class': 'logging.handlers.RotatingFileHandler',
-                    'filename': 'logfile/logging.log',
+                    'filename': 'log/{0}.log'.format(datetime.date.today()),
                     'maxBytes': 10000000,
                     'encoding': 'utf-8',
                     'backupCount': 3,
@@ -95,34 +96,3 @@ class Logger:
 
         # ロガー作成
         self.root = logging.getLogger()
-
-    def debug(self, *args, **kwargs):
-        """
-        DEBUG
-        """
-        self.root.debug(*args, **kwargs)
-
-    def info(self, *args, **kwargs):
-        """
-        INFO
-        """
-        self.root.info(*args, **kwargs)
-
-    def warning(self, *args, **kwargs):
-        """
-        WARNING
-        """
-
-        self.root.warning(*args, **kwargs)
-
-    def error(self, *args, **kwargs):
-        """
-        ERROR
-        """
-        self.root.error(*args, **kwargs)
-
-    def critical(self, *args, **kwargs):
-        """
-        CRITICAL
-        """
-        self.root.critical(*args, **kwargs)
